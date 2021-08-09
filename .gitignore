@@ -133,11 +133,8 @@ dmypy.json
 storage
 storage/
 storage/*
-tz_hprs/media/*
 logs/*
 createsuperuser
-makemigrations
-migrate
 runserver
 local_runserver
 install
