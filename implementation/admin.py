@@ -6,6 +6,7 @@ from .models import Goal, Initiative, InitiativeDetail, OutputType, Activity, De
 class GoalAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(Initiative)
 class InitiativeAdmin(admin.ModelAdmin):
     pass
