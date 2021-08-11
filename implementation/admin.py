@@ -12,6 +12,11 @@ class InitiativeAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(DetailType)
+class DetailTypeAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(InitiativeDetail)
 class InitiativeDetailAdmin(admin.ModelAdmin):
     pass
@@ -29,11 +34,6 @@ class OuputTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(DetailType)
-class DetailTypeAdmin(admin.ModelAdmin):
     pass
 
 

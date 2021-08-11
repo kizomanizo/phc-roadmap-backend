@@ -33,7 +33,11 @@ class Initiative(models.Model):
 
 class InitiativeDetail(models.Model):
     initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
-    detail_type = models.ForeignKey('DetailType', on_delete=models.CASCADE)
+    detail_type = models.ForeignKey(
+        'DetailType',
+        on_delete=models.CASCADE,
+        related_name='type_detail'
+    )
     initiative_detail = models.TextField()
 
     def __str__(self):
@@ -101,8 +105,15 @@ class Activity(models.Model):
         ordering = ['id']
 
 
-class Input(models.Model):
+class InputList(models.Model):
     input_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.input_name
+
+
+class Input(models.Model):
+    input_name = models.ForeignKey(InputList, on_delete=models.CASCADE, default=0)
     input_sub_type = models.ForeignKey('InputSubType', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
