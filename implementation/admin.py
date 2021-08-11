@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Goal, Initiative, InitiativeDetail, OutputType, Activity, DetailType, Input, InputType, InputSubType, Output
+from .models import Goal, Initiative, InitiativeDetail, OutputType, Activity, DetailType, Input, InputType, InputSubType, Output, InputList
 
 
 @admin.register(Goal)
 class GoalAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(InputList)
+class InputListAdmin(admin.ModelAdmin):
     pass
 
 
