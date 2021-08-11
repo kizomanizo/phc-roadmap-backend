@@ -113,7 +113,7 @@ class InputList(models.Model):
 
 
 class Input(models.Model):
-    input_name = models.ForeignKey(InputList, on_delete=models.CASCADE, default=0)
+    input_name = models.ForeignKey(InputList, on_delete=models.CASCADE, default=1)
     input_sub_type = models.ForeignKey('InputSubType', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
