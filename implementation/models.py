@@ -120,7 +120,7 @@ class Input(models.Model):
     notes = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.input_name
+        return self.input_name.input_name
 
     class Meta:
         db_table = 'tblInputs'
