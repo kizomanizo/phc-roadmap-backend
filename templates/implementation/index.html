@@ -1,0 +1,17 @@
+{% extends "_partials/base.html" %}
+{% load static %}
+
+{% block content %}
+    
+  <div class="col-4 mt-3">
+    <a class="btn btn-info" href="{% url 'export_pdf' %}" target="_blank">Export PDF</a>
+  </div>
+  <div class="col-12 mt-1 custom-header">
+    <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
+  </div>
+  <div class="col-12 mt-3 pl-0 investment">
+    <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
+  </div>
+  <hr>
+  
+{% endblock content %}
