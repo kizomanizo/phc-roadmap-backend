@@ -144,3 +144,5 @@ install
 # local development
 start.sh
 db.json
+latest.*
+*.pdf
