@@ -9,10 +9,20 @@
     
 <div class="col-4 mt-3">
   {% url 'export_detailed_pdf' as export_detailed_pdf %}
+  {% url 'export_summary_pdf' as export_summary_pdf %}
+  {% url 'export_summary_investment_pdf' as export_summary_investment_pdf %}
   <a
     class="btn btn-info"
     target="_blank"
-    href="{% url 'export_detailed_pdf' %}"
+    href="
+      {% if request.path == export_detailed_pdf %}
+        {% url 'export_detailed_pdf' %}
+      {% elif request.path == export_summary_pdf %}
+        {% url 'export_summary_pdf' %}
+      {% elif request.path == export_summary_investment_pdf %}
+        {% url 'export_summary_pdf' %}
+      {% endif %}
+      "
     >
     Export PDF
   </a>
