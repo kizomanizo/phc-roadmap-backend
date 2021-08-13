@@ -1,10 +1,22 @@
+body {
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
 .custom-header {
   background-color: lightgrey;
-  padding: 0.08rem;
+  padding-left: 1px;
+  height: 30px;
 }
 
 .cost {
   float: right;
+}
+
+.investment {
+  margin-top: 0;
 }
 
 investment h5 {
@@ -13,4 +25,18 @@ investment h5 {
 
 hr {
   border-top: 3px solid orange;
+}
+
+.wrapper {
+  display: grid;
+  width: 100%;
+  padding: 10px;
+  margin: 10px auto;
+  grid-template-rows: 20px 30px 90px 90px 100px;
+  /* grid-template-columns: 90px 60px 90px 90px 100px; */
+  /* border: 1px solid lightgrey; */
+}
+
+.faint {
+  color: lightgrey;
 }

@@ -3,5 +3,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('export-pdf', views.export_pdf, name='export_pdf'),
+    path('detailed-report-pdf', views.export_detailed_pdf,
+         name='export_detailed_pdf'),
+    path('summary-report-pdf', views.export_summary_pdf,
+         name='export_summary_pdf'),
+    path('summary-investment-report-pdf', views.export_summary_investment_pdf,
+         name='export_summary_investment_pdf'),
 ]
