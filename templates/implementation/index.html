@@ -6,38 +6,10 @@
 {% endblock navigation %}
 
 {% block content %}
-    
-<div class="col-4 mt-3">
-  {% url 'export_detailed_pdf' as export_detailed_pdf %}
-  {% url 'export_summary_pdf' as export_summary_pdf %}
-  {% url 'export_summary_investment_pdf' as export_summary_investment_pdf %}
-  <a
-    class="btn btn-info"
-    target="_blank"
-    href="
-      {% if request.path == export_detailed_pdf %}
-        {% url 'export_detailed_pdf' %}
-      {% elif request.path == export_summary_pdf %}
-        {% url 'export_summary_pdf' %}
-      {% elif request.path == export_summary_investment_pdf %}
-        {% url 'export_summary_pdf' %}
-      {% endif %}
-      "
-    >
-    Export PDF
-  </a>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>PHC Roadmap Report</h1>
+    <p>Different Report Categories Have been Identified...</p>
+  </div>
 </div>
-
-
-<div class="col-12 mt-5 custom-header">
-  <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
-</div>
-
-
-<div class="col-12 mt-5 pl-0 investment">
-  <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
-</div>
-
-  <hr>
-  
 {% endblock content %}

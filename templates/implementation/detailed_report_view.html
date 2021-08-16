@@ -1,0 +1,26 @@
+{% extends "_partials/base.html" %}
+{% load static %}
+
+{% block navigation %}
+  {% include "_partials/header.html" %}
+{% endblock navigation %}
+
+{% block content %}
+<div class="container">    
+<div class="mt-4">
+  <a class="btn btn-info" target="_blank" href="{% url 'export_detailed_pdf' %}">
+    Export PDF
+  </a>
+</div>
+
+<div class="mt-2 custom-header">
+  <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
+</div>
+
+<div class="mt-2 investment">
+  <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
+</div>
+
+  <hr>
+</div>
+{% endblock content %}

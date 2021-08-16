@@ -12,6 +12,21 @@ def index(request):
     return render(request, 'implementation/index.html')
 
 
+def detailed_report(request):
+    """Return the home page for the reports"""
+    return render(request, 'implementation/detailed_report_view.html')
+
+
+def summary_report(request):
+    """Return the home page for the reports"""
+    return render(request, 'implementation/summary_report_view.html')
+
+
+def summary_investment_report(request):
+    """Return the home page for the reports"""
+    return render(request, 'implementation/index.html')
+
+
 def export_detailed_pdf(request):
     """The view for generating the pdf file for the report."""
     today = datetime.now()
