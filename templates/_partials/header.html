@@ -1,14 +1,11 @@
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'index' %}">PHC Roadmap Report</a>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Report Category
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="{% url 'detailed_report' %}">Detailed Report</a>
-      <a class="dropdown-item" href="{% url 'summary_report' %}">Summary Report</a>
-      <a class="dropdown-item" href="{% url 'summary_investment_report' %}">Investment Summary Report</a>
-    </div>
-  </div>
-</nav>
+<header class="navigation_wrapper">
+  <nav>
+      <ul>
+        <a href="{% url 'index' %}" style="text-align: left;">PHC Roadmap Report</a>
+          <li><a href="{% url 'detailed_report' %}">Detailed Report</a></li>
+          <li><a href="{% url 'summary_report' %}">Summary Report</a></li>
+          <li><a href="{% url 'summary_investment_report' %}">Investment Summary Report</a></li>
+          <li><a href="">Login/Logout</a></li>
+      </ul>
+  </nav>
+</header>

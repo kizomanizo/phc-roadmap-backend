@@ -28,7 +28,7 @@ def summary_investment_report(request):
 
 
 def export_detailed_pdf(request):
-    """The view for generating the pdf file for the report."""
+    """The view for generating the pdf file for the detailed report."""
     today = datetime.now()
     #  sum = Activities.object.filter().aggregrate(Sum('quantity'))
     context = {

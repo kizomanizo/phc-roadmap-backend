@@ -1,14 +1,87 @@
-body {
-  font-family: sans-serif;
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin:0;
+}
+
+body { 
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 300;
 }
 
+/* flext box layout */
+/**************************************
+
+Header + Navigation Layout
+
+***************************************/
+
+nav {
+  background: #333;
+  min-height: 40px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  font-size: .95rem;
+  letter-spacing: 0.01rem;
+}
+
+nav a:hover {
+  background: #555;
+}
+
+
+.hero {
+  width: 100%;
+  background: lightgrey;
+  text-align: center;
+  padding: 30px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1rem;
+}
+
+
+/* Grid layout */
+/**************************************
+
+Main Content for the report
+
+***************************************/
+
+#content {
+  display: grid;
+  max-width: 960px;
+  margin-inline: auto;
+  grid-template-rows: 50px 50px 50px 0 50px 10px 100px;
+  grid-gap: 2px;
+}
+
+#content div {
+  padding: 10px;
+}
+
 .custom-header {
   background-color: lightgrey;
   padding-left: 1px;
-  height: 30px;
+  height: 12px;
 }
 
 .cost {
@@ -27,16 +100,27 @@ hr {
   border-top: 3px solid orange;
 }
 
-.wrapper {
-  display: grid;
-  width: 80%;
-  padding: 10px;
-  margin: 10px auto;
-  grid-template-rows: 20px 30px 90px 90px 100px;
-  /* grid-template-columns: 90px 60px 90px 90px 100px; */
-  /* border: 1px solid lightgrey; */
+.inputs {
+  margin: 0;
 }
 
-.faint {
-  color: lightgrey;
+/* Nested Grid layout */
+/**************************************
+
+Main Content for the inputs and costs
+
+***************************************/
+
+#nested-inputs {
+  display: flex;
+  flex-grow: 1;
+  margin-top: 10px;
+}
+
+#nested-inputs h5{
+  flex-grow: 1;
+}
+
+#nested-inputs h5:nth-child(5){
+  text-align: right;
 }
