@@ -1,43 +1,37 @@
 {% extends "_partials/base.html" %}
 {% load static %}
 
-{% block styles %}
-<style>
-@page {
-  size: "A4";
-  margin: 2.5cm 1.5cm 3.5cm 1.5cm;
-
-  @top-center {
-    content: "Detailed activity cost with inputs";
-  }
-
-  @bottom-right {
-    content: "Page "counter(page)" of "counter(pages);
-  }
-}
-</style>
-  
-{% endblock styles %}
+{% block navigation %}
+  {% include "_partials/header.html" %}
+{% endblock navigation %}
 
 {% block content %}
 
-  <div class="custom-header">
-    <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
-  </div>
+  <div id="grid-container">
 
-  <div class="investment">
-    <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
-  </div>
+    <div class="export-btn">
+      <a target="_blank" href="{% url 'export_summary_pdf' %}">
+        Export PDF
+      </a>
+    </div>
 
-  <hr />
+    <div class="custom-header">
+      <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
+    </div>
 
-  <div class="activity">
-    <h5><span class="faint">Activity:</span> 1 Develope a proposal for establishing health department <span class="cost">$44,239</span></h5>
-  </div>
+    <div class="investment">
+      <h5 class="description">
+        Investment 1: Develoment and deployment of Health Worker Registry
+        <span class="cost">$892,000</span>
+      </h5>
+    </div>
 
-  <div class="faint"><h5>Inputs:</h5></div>
-  <div class="row">
-    <table class="table table-stripped"></table>
+    <div class="activity">
+      <p><span>Activity:</span> 1 Develope a proposal for establishing health department
+        <span class="cost">$44,239</span>
+      </p>
+    </div>
+ 
   </div>
   
 {% endblock content %}

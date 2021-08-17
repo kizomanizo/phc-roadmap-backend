@@ -62,7 +62,7 @@ nav a:hover {
 /* Grid layout */
 /**************************************
 
-Main Content for the report
+Main Content for the  detailed report
 
 ***************************************/
 
@@ -74,14 +74,14 @@ Main Content for the report
   grid-gap: 2px;
 }
 
-#content div {
+#content div, #grid-container div {
   padding: 10px;
 }
 
 .custom-header {
   background-color: lightgrey;
   padding-left: 1px;
-  height: 12px;
+  height: 15px;
 }
 
 .cost {
@@ -107,7 +107,7 @@ hr {
 /* Nested Grid layout */
 /**************************************
 
-Main Content for the inputs and costs
+Main Content for the inputs and costs for detailed report
 
 ***************************************/
 
@@ -123,4 +123,28 @@ Main Content for the inputs and costs
 
 #nested-inputs h5:nth-child(5){
   text-align: right;
+}
+
+
+/* Grid layout 2 - Summary Report*/
+/**************************************
+
+Main Content for the inputs and costs for summary report
+
+***************************************/
+
+#grid-container {
+  display: grid;
+  max-width: 960px;
+  margin-inline: auto;
+  grid-template-rows: 50px 50px;
+  grid-gap: 1px
+}
+
+#grid-container .investment {
+  border-bottom: 1px solid #444;
+}
+
+.activity {
+  font-size: .85rem;
 }
