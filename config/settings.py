@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party apps
-    'django_extensions',
+    # 'django_extensions',
     'debug_toolbar',
     'rest_framework',
     'corsheaders',
@@ -172,4 +172,5 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8080',
     'http://localhost:8000',
+    'https://phc-roadmap.herokuapp.com',
 )
