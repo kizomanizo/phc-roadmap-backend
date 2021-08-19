@@ -16,6 +16,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     serializer_class = UserSerializer
     queryset = get_user_model().objects.all()
+    http_method_names = ['get']
 
 
 class GoalViewSet(viewsets.ModelViewSet):
