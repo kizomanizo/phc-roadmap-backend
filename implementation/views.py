@@ -4,7 +4,12 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
-from django.db.models import Sum
+from django.db.models import Sum, F, Prefetch
+from django.db import connection
+from implementation.models import (
+    Activity, DetailType, Goal, Initiative, InitiativeDetail, Input, InputSubType, 
+    InputType, Output, OutputType
+)
 
 
 def index(request):
@@ -14,7 +19,47 @@ def index(request):
 
 def detailed_report(request):
     """Return the home page for the reports"""
-    return render(request, 'implementation/detailed_report_view.html')
+    # initiatives_with_activies_n_goals= list(
+    #     Initiative.objects.select_related('goal').\
+    #         values(
+    #             'id', 'initiative', 'order', 'goal__goal', 'goal__goal_details',
+    #         )
+    # )
+    # all_initiatives = list(Initiative.objects.prefetch_related('actvity_set')
+        # prefetch_related('activity_set')
+        # values('id', 'initiative', 'goal__goal', 'goal__goal_details')   
+    # )
+
+    # activities_with_inputs = list(
+    #     Activity.objects.prefetch_related('input_set').\
+    #     filter()
+    # )
+    # all_inputs = list(
+    #     Input.objects.select_related('input_sub_type__input_type').\
+    #     select_related('activity').all()
+    # )
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+        """
+        select i.id, i.initiative, gl.goal, gl.goal_details, act.activity, inp.input_name,
+        inp.quantity, inp_sub.input_sub_type, inp_sub.cost_usd, inp_type.input_type,
+        (inp_sub.cost_usd * inp.quantity) as calculated_cost
+
+        from "tblInitiatives" i, "tblGoals" gl, "tblActivities" act, "tblInputs" inp,
+        "tblListInputSubTypes" inp_sub, "tblListInputTypes" inp_type
+
+        where 
+        i.goal_id=gl.id and act.initiative_id=i.id
+        and act.id=inp.activity_id and inp.input_sub_type_id=inp_sub.id
+        and inp_sub.input_type_id=inp_type.id;
+
+        """
+        )
+        results = cursor.fetchall()
+    
+    
+    return render(request, 'implementation/detailed_report_view.html', {'results': results})
 
 
 def summary_report(request):

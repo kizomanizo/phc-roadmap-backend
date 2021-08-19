@@ -14,34 +14,38 @@
     </a>
   </div>
 
-  <div class="custom-header">
-    <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
-  </div>
+  {% if results %}
+    {% for result in results %}
+    <div class="custom-header">
+      <h5>Strategic Goal 2: Put in place critical foundational systems</h5>
+    </div>
 
-  <div class="investment">
-    <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
-  </div>
+    <div class="investment">
+      <h5>Investment 9: Develop and Deploy Health Worker Registry <span class="cost">$726,025</span></h5>
+    </div>
 
-  <hr>
+    <hr>
 
-  <div id="activity">
-    <h5>
-      <span class="faint" style="color: #888; margin-right: 50px">Activity:</span> 
-      1 Develope a proposal for establishing health department
-      <span class="cost">$44,239</span>
-    </h5>
-  </div>
+    <div id="activity">
+      <h5>
+        <span class="faint" style="color: #888; margin-right: 50px">Activity:</span> 
+        1 Develope a proposal for establishing health department
+        <span class="cost">$44,239</span>
+      </h5>
+    </div>
 
-  <div class="inputs"><h5 style="color: #888;">Inputs:</h5></div>
+    <div class="inputs"><h5 style="color: #888;">Inputs:</h5></div>
 
-  <div id="nested-inputs">
-    <h5>Human Resource</h5>
-    <h5>Technical Expertise</h5>
-    <h5>15 Person Days</h5>
-    <h5>Time, Concept note, scope of work, and ToR</h5>
-    <h5>$5,910</h5>
+    <div id="nested-inputs">
+      <h5>Human Resource</h5>
+      <h5>Technical Expertise</h5>
+      <h5>15 Person Days</h5>
+      <h5>Time, Concept note, scope of work, and ToR</h5>
+      <h5>$5,910</h5>
 
-  </div>
+    </div>
+    {% endfor %}
+  {% endif %}
 
 </div>
 {% endblock content %}

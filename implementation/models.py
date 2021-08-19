@@ -16,7 +16,7 @@ class Goal(models.Model):
 
 class Initiative(models.Model):
     initiative = models.CharField(max_length=200)
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE) 
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='initiative_info') 
     order = models.PositiveIntegerField(default=0)
     initiative_short_description = models.TextField()
 
@@ -32,7 +32,8 @@ class Initiative(models.Model):
 
 
 class InitiativeDetail(models.Model):
-    initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
+    initiative = models.ForeignKey(
+        Initiative, on_delete=models.CASCADE, related_name='initiative_info')
     detail_type = models.ForeignKey(
         'DetailType',
         on_delete=models.CASCADE,
@@ -63,8 +64,10 @@ class DetailType(models.Model):
 
 
 class Output(models.Model):
-    initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
-    output_type = models.ForeignKey('OutputType', on_delete=models.CASCADE)
+    initiative = models.ForeignKey(
+        Initiative, on_delete=models.CASCADE, related_name='initiative_output')
+    output_type = models.ForeignKey(
+        'OutputType', on_delete=models.CASCADE, related_name='ouput_info_type')
     output_text = models.TextField()
     order = models.PositiveIntegerField(default=0)
 
@@ -93,7 +96,8 @@ class OutputType(models.Model):
 class Activity(models.Model):
     activity = models.CharField(max_length=100)
     order = models.PositiveIntegerField(default=0)
-    initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
+    initiative = models.ForeignKey(
+        Initiative, on_delete=models.CASCADE, related_name='activity_initiative')
 
     def __str__(self):
         return self.activity
@@ -107,9 +111,11 @@ class Activity(models.Model):
 
 class Input(models.Model):
     input_name = models.CharField(max_length=255)
-    input_sub_type = models.ForeignKey('InputSubType', on_delete=models.CASCADE)
+    input_sub_type = models.ForeignKey(
+        'InputSubType', on_delete=models.CASCADE, related_name='sub_type')
     quantity = models.PositiveIntegerField(default=0)
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    activity = models.ForeignKey(
+        Activity, on_delete=models.CASCADE, related_name='activity_input')
     notes = models.CharField(max_length=100)
 
     def __str__(self):
@@ -137,7 +143,8 @@ class InputType(models.Model):
 class InputSubType(models.Model):
     id = models.CharField(primary_key=True, max_length=30)
     input_sub_type = models.CharField(max_length=100)
-    input_type = models.ForeignKey(InputType, on_delete=models.CASCADE)
+    input_type = models.ForeignKey(
+        InputType, on_delete=models.CASCADE, related_name='input_sub_info')
     units = models.CharField(max_length=100)
     input_sub_type_short = models.CharField(max_length=80)
     units_short = models.CharField(max_length=80)
