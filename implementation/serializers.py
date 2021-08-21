@@ -1,15 +1,25 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import (
     Activity, DetailType, Goal, Initiative, InitiativeDetail, Input, InputSubType,
     InputType, Output, OutputType
 )
 
+class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        data['username'] = self.user.username
+        data['email'] = self.user.email
+
+        return data
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'username',)
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
 
 
 class InputSubTypeSerializer(serializers.ModelSerializer):

@@ -1,13 +1,21 @@
-from rest_framework import viewsets
 from django.contrib.auth import get_user_model
+from rest_framework import permissions, viewsets
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import (
     Activity, DetailType, Goal, Initiative, InitiativeDetail, Input, InputSubType,
     InputType, Output, OutputType
 )
 from .serializers import (
     UserSerializer, GoalSerializer, InitiativeSerializer, ActivitySerializer,
-    InputSerializer, InputSubTypeSerializer, InputTypeSerializer
+    InputSerializer, InputSubTypeSerializer, InputTypeSerializer, UserTokenObtainPairSerializer
 )
+
+
+class UserTokenObtainPairView(TokenObtainPairView):
+    """
+    List the user token and all the data associated with the user.
+    """
+    serializer_class = UserTokenObtainPairSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,6 +25,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = get_user_model().objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class GoalViewSet(viewsets.ModelViewSet):
@@ -26,6 +35,7 @@ class GoalViewSet(viewsets.ModelViewSet):
     serializer_class = GoalSerializer
     queryset = Goal.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class InitiativeViewSet(viewsets.ModelViewSet):
@@ -35,6 +45,7 @@ class InitiativeViewSet(viewsets.ModelViewSet):
     serializer_class = InitiativeSerializer
     queryset = Initiative.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class ActivityViewSet(viewsets.ModelViewSet):
@@ -44,6 +55,7 @@ class ActivityViewSet(viewsets.ModelViewSet):
     serializer_class = ActivitySerializer
     queryset = Activity.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class InputViewSet(viewsets.ModelViewSet):
@@ -53,6 +65,7 @@ class InputViewSet(viewsets.ModelViewSet):
     serializer_class = InputSerializer
     queryset = Input.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class InputSubTypeViewSet(viewsets.ModelViewSet):
@@ -62,6 +75,7 @@ class InputSubTypeViewSet(viewsets.ModelViewSet):
     serializer_class = InputSubTypeSerializer
     queryset = InputSubType.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
 
 
 class InputTypeViewSet(viewsets.ModelViewSet):
@@ -71,3 +85,4 @@ class InputTypeViewSet(viewsets.ModelViewSet):
     serializer_class = InputTypeSerializer
     queryset = InputType.objects.all()
     http_method_names = ['get']
+    permission_classes = [permissions.IsAuthenticated,]
