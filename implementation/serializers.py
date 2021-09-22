@@ -10,8 +10,9 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
-        data['username'] = self.user.username
-        data['email'] = self.user.email
+        # data['username'] = self.user.username
+        # data['email'] = self.user.email
+        data['id'] = self.user.id
 
         return data
 
