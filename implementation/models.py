@@ -14,12 +14,12 @@ class Goal(models.Model):
         verbose_name = 'tblGoals'
         verbose_name_plural = 'tblGoals'
 
+
 class Initiative(models.Model):
     initiative = models.CharField(max_length=200)
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='initiative_info')
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='initiatives')
     order = models.PositiveIntegerField(default=0)
     initiative_short_description = models.TextField()
-
 
     def __str__(self):
         return self.initiative
@@ -31,14 +31,45 @@ class Initiative(models.Model):
         ordering = ['id']
 
 
+class Activity(models.Model):
+    activity = models.CharField(max_length=100)
+    order = models.PositiveIntegerField(default=0)
+    initiative = models.ForeignKey(
+        Initiative, on_delete=models.CASCADE, related_name='activities')
+
+    def __str__(self):
+        return self.activity
+
+    class Meta:
+        db_table = 'tblActivities'
+        verbose_name = 'tblActivities'
+        verbose_name_plural = 'tblActivities'
+        ordering = ['id']
+
+
+class Input(models.Model):
+    input_name = models.CharField(max_length=255)
+    input_sub_type = models.ForeignKey(
+        'InputSubType', on_delete=models.CASCADE, related_name='inputs')
+    quantity = models.PositiveIntegerField(default=0)
+    activity = models.ForeignKey(
+        Activity, on_delete=models.CASCADE, related_name='inputs')
+    notes = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.input_name
+
+    class Meta:
+        db_table = 'tblInputs'
+        verbose_name = 'tblInputs'
+        verbose_name_plural = 'tblInputs'
+
+
 class InitiativeDetail(models.Model):
     initiative = models.ForeignKey(
-        Initiative, on_delete=models.CASCADE, related_name='initiative_info')
+        Initiative, on_delete=models.CASCADE, related_name='initiative_details')
     detail_type = models.ForeignKey(
-        'DetailType',
-        on_delete=models.CASCADE,
-        related_name='type_detail'
-    )
+        'DetailType', on_delete=models.CASCADE, related_name='initiative_details')
     initiative_detail = models.TextField()
 
     def __str__(self):
@@ -93,40 +124,6 @@ class OutputType(models.Model):
         verbose_name_plural = 'tblListOuputTypes'
 
 
-class Activity(models.Model):
-    activity = models.CharField(max_length=100)
-    order = models.PositiveIntegerField(default=0)
-    initiative = models.ForeignKey(
-        Initiative, on_delete=models.CASCADE, related_name='activity_initiative')
-
-    def __str__(self):
-        return self.activity
-
-    class Meta:
-        db_table = 'tblActivities'
-        verbose_name = 'tblActivities'
-        verbose_name_plural = 'tblActivities'
-        ordering = ['id']
-
-
-class Input(models.Model):
-    input_name = models.CharField(max_length=255)
-    input_sub_type = models.ForeignKey(
-        'InputSubType', on_delete=models.CASCADE, related_name='sub_type')
-    quantity = models.PositiveIntegerField(default=0)
-    activity = models.ForeignKey(
-        Activity, on_delete=models.CASCADE, related_name='activity_input')
-    notes = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.input_name
-
-    class Meta:
-        db_table = 'tblInputs'
-        verbose_name = 'tblInputs'
-        verbose_name_plural = 'tblInputs'
-
-
 class InputType(models.Model):
     id = models.CharField(primary_key=True, max_length=30)
     input_type = models.CharField(max_length=100)
@@ -144,7 +141,7 @@ class InputSubType(models.Model):
     id = models.CharField(primary_key=True, max_length=30)
     input_sub_type = models.CharField(max_length=100)
     input_type = models.ForeignKey(
-        InputType, on_delete=models.CASCADE, related_name='input_sub_info')
+        InputType, on_delete=models.CASCADE, related_name='input_sub_types')
     units = models.CharField(max_length=100)
     input_sub_type_short = models.CharField(max_length=80)
     units_short = models.CharField(max_length=80)

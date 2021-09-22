@@ -20,24 +20,21 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        # fields = ['id', 'username', 'email', 'first_name', 'last_name']
         fields = '__all__'
 
 
 class InputSubTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputSubType
-        # fields = ('id','input_sub_type', 'cost_usd')
-        fields = '__all__'
+        exclude = ('input_type', )
 
 
 class InputTypeSerializer(serializers.ModelSerializer):
-    input_sub_info = InputSubTypeSerializer(many=True, read_only=True)
+    input_sub_types = InputSubTypeSerializer(many=True)
 
     class Meta:
         model = InputType
-        # fields = ('id', 'input_type', 'input_sub_info')
-        fields = '__all__'
+        fields = ('id', 'input_type', 'input_sub_types')
 
 
 class InputSerializer(serializers.ModelSerializer):
@@ -45,32 +42,48 @@ class InputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Input
-        # fields = ('id', 'input_name', 'quantity', 'input_sub_type')
-        fields = '__all__'
+        exclude = ('activity', )
 
 
 class ActivitySerializer(serializers.ModelSerializer):
-    activity_input = InputSerializer(many=True, read_only=True)
+    inputs = InputSerializer(many=True)
 
     class Meta:
         model = Activity
-        # fields = ('id', 'activity', 'activity_input')
-        fields =  '__all__'
+        fields = ('id', 'order', 'activity', 'inputs')
+
+
+class InitiativeDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InitiativeDetail
+        fields = '__all__'
 
 
 class InitiativeSerializer(serializers.ModelSerializer):
-    activity_initiative = ActivitySerializer(many=True, read_only=True)
+    activities = ActivitySerializer(many=True)
+    initiative_details = InitiativeDetailSerializer(many=True)
 
     class Meta:
         model = Initiative
-        # fields = ('id', 'initiative', 'activity_initiative')
-        fields = '__all__'
+        fields = (
+            'id',
+            'order',
+            'initiative',
+            'initiative_details',
+            'initiative_short_description',
+            'activities'
+        )
 
 
 class GoalSerializer(serializers.ModelSerializer):
-    initiative_info= InitiativeSerializer(many=True, read_only=True)
+    initiatives = InitiativeSerializer(many=True)
 
     class Meta:
         model = Goal
-        # fields = ('id', 'goal', 'initiative_info')
-        fields = '__all__'
+        fields = (
+            'id',
+            'goal',
+            'goal_details',
+            'goal_after_investment',
+            'initiatives'
+        )
