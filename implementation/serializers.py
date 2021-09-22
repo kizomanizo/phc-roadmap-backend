@@ -19,13 +19,15 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        # fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        fields = '__all__'
 
 
 class InputSubTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputSubType
-        fields = ('input_sub_type', 'cost_usd')
+        # fields = ('id','input_sub_type', 'cost_usd')
+        fields = '__all__'
 
 
 class InputTypeSerializer(serializers.ModelSerializer):
@@ -33,7 +35,8 @@ class InputTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InputType
-        fields = ('input_type', 'input_sub_info')
+        # fields = ('id', 'input_type', 'input_sub_info')
+        fields = '__all__'
 
 
 class InputSerializer(serializers.ModelSerializer):
@@ -41,7 +44,8 @@ class InputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Input
-        fields = ('input_name', 'quantity', 'input_sub_type')
+        # fields = ('id', 'input_name', 'quantity', 'input_sub_type')
+        fields = '__all__'
 
 
 class ActivitySerializer(serializers.ModelSerializer):
@@ -49,7 +53,8 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ('id', 'activity', 'activity_input')
+        # fields = ('id', 'activity', 'activity_input')
+        fields =  '__all__'
 
 
 class InitiativeSerializer(serializers.ModelSerializer):
@@ -57,7 +62,8 @@ class InitiativeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Initiative
-        fields = ('id', 'initiative', 'activity_initiative')
+        # fields = ('id', 'initiative', 'activity_initiative')
+        fields = '__all__'
 
 
 class GoalSerializer(serializers.ModelSerializer):
@@ -65,4 +71,5 @@ class GoalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Goal
-        fields = ('goal', 'initiative_info')
+        # fields = ('id', 'goal', 'initiative_info')
+        fields = '__all__'

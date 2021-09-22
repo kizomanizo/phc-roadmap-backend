@@ -12,11 +12,11 @@ from .api import (
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='users')
 router.register('data', GoalViewSet, basename='data')
-router.register('initiative', InitiativeViewSet, basename='initiative')
-router.register('activity', ActivityViewSet, basename='activity')
-router.register('input', InputViewSet, basename='input')
-router.register('input-sub-type', InputSubTypeViewSet, basename='input-sub-type')
-router.register('input-type', InputTypeViewSet, basename='input-type')
+router.register('initiatives', InitiativeViewSet, basename='initiatives')
+router.register('activities', ActivityViewSet, basename='activitys')
+router.register('inputs', InputViewSet, basename='inputs')
+router.register('input-sub-types', InputSubTypeViewSet, basename='input-sub-types')
+router.register('input-types', InputTypeViewSet, basename='input-types')
 
 urlpatterns = [
     path('users/login/', UserTokenObtainPairView.as_view(), name='token_obtain_pair'),

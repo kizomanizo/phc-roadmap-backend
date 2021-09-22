@@ -16,11 +16,11 @@ class Goal(models.Model):
 
 class Initiative(models.Model):
     initiative = models.CharField(max_length=200)
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='initiative_info') 
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name='initiative_info')
     order = models.PositiveIntegerField(default=0)
     initiative_short_description = models.TextField()
 
-    
+
     def __str__(self):
         return self.initiative
 
