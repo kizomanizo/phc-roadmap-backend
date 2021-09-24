@@ -6,8 +6,10 @@ from weasyprint import HTML
 import tempfile
 from django.db.models import Sum, F, Prefetch
 from django.db import connection
+
+"""
 from implementation.models import (
-    Activity, DetailType, Goal, Initiative, InitiativeDetail, Input, InputSubType, 
+    Activity, DetailType, Goal, Initiative, InitiativeDetail, Input, InputSubType,
     InputType, Output, OutputType
 )
 
@@ -160,3 +162,4 @@ def export_summary_investment_pdf(request):
         response.write(output.read())
 
     return response
+"""
