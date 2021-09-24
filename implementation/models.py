@@ -100,7 +100,7 @@ class Output(models.Model):
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.initiative.initiative
+        return self.initiative.name
 
     class Meta:
         db_table = 'tblOuputs'
@@ -113,7 +113,7 @@ class OutputType(models.Model):
     name= models.CharField(max_length=150)
 
     def __str__(self):
-        return self.output_type
+        return self.name
 
     class Meta:
         db_table = 'tblListOuputTypes'
