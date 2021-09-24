@@ -176,6 +176,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
     'https://phc-roadmap.herokuapp.com',
     'https://phc-roadmap-frontend.herokuapp.com',
+    'http://phc-roadmap-frontend.herokuapp.com',
 )
 
 REST_FRAMEWORK = {
