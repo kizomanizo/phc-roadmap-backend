@@ -1,3 +1,4 @@
+from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 
 from .models import (
@@ -7,14 +8,14 @@ from .models import (
 
 
 @admin.register(Goal)
-class GoalAdmin(admin.ModelAdmin):
+class GoalAdmin(ImportExportModelAdmin):
     list_display = ['name', 'goal_details', 'goal_after_investment']
     search_fields = ['name']
     list_per_page = 20
 
 
 @admin.register(Initiative)
-class InitiativeAdmin(admin.ModelAdmin):
+class InitiativeAdmin(ImportExportModelAdmin):
     list_display = ['name', 'get_goal', 'order', 'initiative_short_description']
     search_fields = ['name', 'goal__name']
     list_per_page = 20
@@ -25,7 +26,7 @@ class InitiativeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Activity)
-class ActivityAdmin(admin.ModelAdmin):
+class ActivityAdmin(ImportExportModelAdmin):
     list_display = ['name', 'get_initiative',]
     search_fields = ['name', 'initiative__name']
 
@@ -35,13 +36,13 @@ class ActivityAdmin(admin.ModelAdmin):
 
 
 @admin.register(InputType)
-class InputTypeAdmin(admin.ModelAdmin):
+class InputTypeAdmin(ImportExportModelAdmin):
     list_display = ['id', 'name']
     search_fields = ['id', 'name']
 
 
 @admin.register(InputSubType)
-class InputSubTypeAdmin(admin.ModelAdmin):
+class InputSubTypeAdmin(ImportExportModelAdmin):
     list_display = [
         'id',
         'name',
@@ -58,7 +59,7 @@ class InputSubTypeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Input)
-class InputAdmin(admin.ModelAdmin):
+class InputAdmin(ImportExportModelAdmin):
     list_display = [
         'id',
         'name',
@@ -81,14 +82,14 @@ class InputAdmin(admin.ModelAdmin):
 
 
 @admin.register(DetailType)
-class DetailTypeAdmin(admin.ModelAdmin):
+class DetailTypeAdmin(ImportExportModelAdmin):
     list_display = ['id', 'name']
     search_fields = ['id', 'name']
     list_per_page = 20
 
 
 @admin.register(InitiativeDetail)
-class InitiativeDetailAdmin(admin.ModelAdmin):
+class InitiativeDetailAdmin(ImportExportModelAdmin):
     list_display = ['get_initiative', 'get_detail_type', 'text']
     search_fields = ['initiative__name', 'detail_type__name', 'text']
     list_per_page = 20
@@ -103,7 +104,7 @@ class InitiativeDetailAdmin(admin.ModelAdmin):
 
 
 @admin.register(Output)
-class OutputAdmin(admin.ModelAdmin):
+class OutputAdmin(ImportExportModelAdmin):
     list_display = ['get_initiative', 'get_output_type', 'description', 'order']
     search_fields = [
         'initiative__name',
@@ -122,6 +123,6 @@ class OutputAdmin(admin.ModelAdmin):
 
 
 @admin.register(OutputType)
-class OuputTypeAdmin(admin.ModelAdmin):
+class OuputTypeAdmin(ImportExportModelAdmin):
     list_display = ['id', 'name']
     search_fields = ['id', 'name']
