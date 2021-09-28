@@ -2,12 +2,12 @@ from django.contrib.auth import get_user_model
 from rest_framework import permissions, viewsets
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import (
-    UserSerializer, GoalSerializer, InitiativeSerializer, ActivitySerializer, ApproachSerializer,
+    UserSerializer, GoalSerializer, InitiativeSerializer, ActivitySerializer, InputSubTypeSerializer,
     InputSerializer, InputTypeSerializer, UserTokenObtainPairSerializer
 )
 from .models import (
-    Goal, Initiative, Activity, Approach, InitiativeDetail, DetailType, Output,
-    OutputType, InputType, Input
+    Goal, Initiative, Activity, InitiativeDetail, DetailType, Output,
+    OutputType, InputType, InputSubType, Input
 )
 
 
@@ -68,11 +68,11 @@ class InputViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated,]
 
 
-class ApproachViewSet(viewsets.ModelViewSet):
+class InputSubTypeViewSet(viewsets.ModelViewSet):
     """
-    List all the Approaches.
+    List all the Input Sub Types.
     """
-    serializer_class = ApproachSerializer
+    serializer_class = InputSubTypeSerializer
     queryset = InputType.objects.all()
     http_method_names = ['get']
     permission_classes = [permissions.IsAuthenticated,]

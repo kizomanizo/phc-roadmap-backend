@@ -11,8 +11,6 @@ class Goal(models.Model):
 
     class Meta:
         db_table = 'tblGoals'
-        verbose_name = 'tblGoals'
-        verbose_name_plural = 'tblGoals'
 
 
 class Initiative(models.Model):
@@ -26,8 +24,6 @@ class Initiative(models.Model):
 
     class Meta:
         db_table = 'tblInitiatives'
-        verbose_name = 'tblInitiatives'
-        verbose_name_plural = 'tblInitiatives'
         ordering = ['id']
 
 
@@ -42,24 +38,58 @@ class Activity(models.Model):
 
     class Meta:
         db_table = 'tblActivities'
-        verbose_name = 'tblActivities'
-        verbose_name_plural = 'tblActivities'
+        verbose_name_plural = 'Activities'
         ordering = ['id']
 
 
-class Approach(models.Model):
-    name = models.CharField(max_length=255)
-    notes = models.CharField(max_length=100)
-    activity = models.ForeignKey(
-        Activity, on_delete=models.CASCADE, related_name='approach')
+class InputType(models.Model):
+    id = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        db_table = 'tblApproaches'
-        verbose_name = 'tblApproaches'
-        verbose_name_plural = 'tblApproaches'
+        db_table = 'tblInputTypes'
+        verbose_name_plural = 'Input Types'
+
+
+class InputSubType(models.Model):
+    id = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=100)
+    input_type = models.ForeignKey(
+        InputType, on_delete=models.CASCADE, related_name='input_sub_types')
+    units = models.CharField(max_length=100)
+    input_sub_type_short = models.CharField(max_length=80)
+    units_short = models.CharField(max_length=80)
+    cost_usd = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'tblInputSubTypes'
+        verbose_name_plural = 'Input Subtypes'
+
+
+class Input(models.Model):
+    name = models.CharField(max_length=255)
+    input_sub_type = models.ForeignKey(
+        InputSubType,
+        on_delete=models.CASCADE,
+        related_name='inputs',
+        verbose_name='Input Subtype'
+    )
+    quantity = models.PositiveIntegerField(default=0)
+    notes = models.CharField(max_length=100)
+    activity = models.ForeignKey(
+        Activity, on_delete=models.CASCADE, related_name='inputs')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'tblInputs'
 
 
 class InitiativeDetail(models.Model):
@@ -74,8 +104,7 @@ class InitiativeDetail(models.Model):
 
     class Meta:
         db_table = 'tblInitiativeDetails'
-        verbose_name = 'tblInitiativeDetails'
-        verbose_name_plural = 'tblInitiativeDetails'
+        verbose_name_plural = 'Initiative Details'
 
 
 class DetailType(models.Model):
@@ -87,15 +116,14 @@ class DetailType(models.Model):
 
     class Meta:
         db_table = 'tblListDetailTypes'
-        verbose_name = 'tblListDetailTypes'
-        verbose_name_plural = 'tblListDetailTypes'
+        verbose_name_plural = 'Detail Types'
 
 
 class Output(models.Model):
     initiative = models.ForeignKey(
-        Initiative, on_delete=models.CASCADE, related_name='output')
+        Initiative, on_delete=models.CASCADE, related_name='outputs')
     output_type = models.ForeignKey(
-        'OutputType', on_delete=models.CASCADE, related_name='ouput')
+        'OutputType', on_delete=models.CASCADE, related_name='ouputs')
     description = models.TextField()
     order = models.PositiveIntegerField(default=0)
 
@@ -104,8 +132,6 @@ class Output(models.Model):
 
     class Meta:
         db_table = 'tblOuputs'
-        verbose_name = 'tblOuputs'
-        verbose_name_plural = 'tblOuputs'
 
 
 class OutputType(models.Model):
@@ -116,41 +142,5 @@ class OutputType(models.Model):
         return self.name
 
     class Meta:
-        db_table = 'tblListOuputTypes'
-        verbose_name = 'tblListOuputTypes'
-        verbose_name_plural = 'tblListOuputTypes'
-
-
-class InputType(models.Model):
-    id = models.CharField(primary_key=True, max_length=30)
-    name = models.CharField(max_length=100)
-    quantity = models.PositiveIntegerField(default=0)
-    activity = models.ForeignKey(
-        Activity, on_delete=models.CASCADE, related_name='input_types')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        db_table = 'tblListInputTypes'
-        verbose_name = 'tblListInputTypes'
-        verbose_name_plural = 'tblListInputTypes'
-
-
-class Input(models.Model):
-    id = models.CharField(primary_key=True, max_length=30)
-    name = models.CharField(max_length=100)
-    input_type = models.ForeignKey(
-        InputType, on_delete=models.CASCADE, related_name='inputs')
-    units = models.CharField(max_length=100)
-    input_short = models.CharField(max_length=80)
-    units_short = models.CharField(max_length=80)
-    cost_usd = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        db_table = 'tblListInputs'
-        verbose_name = 'tblListInputs'
-        verbose_name_plural = 'tblListInputs'
+        db_table = 'tblOuputTypes'
+        verbose_name_plural = 'Output Types'

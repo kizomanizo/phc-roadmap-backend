@@ -3,8 +3,8 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import (
-    Goal, Initiative, Activity, Approach, InitiativeDetail, DetailType, Output,
-    OutputType, InputType, Input
+    Goal, Initiative, Activity, InitiativeDetail, DetailType, Output,
+    OutputType, InputType, InputSubType, Input
 )
 
 class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -24,28 +24,30 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class InputSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Input
-        fields = '__all__'
-
-
 class InputTypeSerializer(serializers.ModelSerializer):
-    inputs = InputSerializer(many=True)
     class Meta:
         model = InputType
         fields  = '__all__'
 
 
-class ApproachSerializer(serializers.ModelSerializer):
+class InputSubTypeSerializer(serializers.ModelSerializer):
+    input_type = InputTypeSerializer()
+    class Meta:
+        model = InputSubType
+        fields = '__all__'
+
+
+class InputSerializer(serializers.ModelSerializer):
+    input_sub_type = InputSubTypeSerializer()
 
     class Meta:
-        model = Approach
-        fields  = '__all__'
+        model = Input
+        fields = '__all__'
+
 
 
 class ActivitySerializer(serializers.ModelSerializer):
-    input_types= InputTypeSerializer(many=True)
+    inputs= InputSerializer(many=True)
 
     class Meta:
         model = Activity

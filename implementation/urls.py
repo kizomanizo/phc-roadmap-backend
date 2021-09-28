@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
 )
 from .api import (
     UserViewSet, GoalViewSet, InitiativeViewSet,ActivityViewSet, InputViewSet,
-    ApproachViewSet, InputTypeViewSet, UserTokenObtainPairView
+    InputSubTypeViewSet, InputTypeViewSet, UserTokenObtainPairView
 )
 
 router = DefaultRouter()
@@ -15,7 +15,7 @@ router.register('initiatives', InitiativeViewSet, basename='initiatives')
 router.register('goals', GoalViewSet, basename='goals')
 router.register('activities', ActivityViewSet, basename='activities')
 router.register('inputs', InputViewSet, basename='inputs')
-router.register('approaches', ApproachViewSet, basename='approaches')
+router.register('input-subtypes', InputSubTypeViewSet, basename='input-subtypes')
 router.register('input-types', InputTypeViewSet, basename='input-types')
 
 urlpatterns = [
