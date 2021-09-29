@@ -52,6 +52,7 @@ class InputType(models.Model):
     class Meta:
         db_table = 'tblInputTypes'
         verbose_name_plural = 'Input Types'
+        ordering = ['id']
 
 
 class InputSubType(models.Model):
@@ -90,6 +91,7 @@ class Input(models.Model):
 
     class Meta:
         db_table = 'tblInputs'
+        ordering = ['id']
 
 
 class InitiativeDetail(models.Model):
@@ -105,6 +107,7 @@ class InitiativeDetail(models.Model):
     class Meta:
         db_table = 'tblInitiativeDetails'
         verbose_name_plural = 'Initiative Details'
+        ordering = ['id']
 
 
 class DetailType(models.Model):
@@ -132,6 +135,7 @@ class Output(models.Model):
 
     class Meta:
         db_table = 'tblOuputs'
+        ordering = ['id']
 
 
 class OutputType(models.Model):
