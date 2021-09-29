@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Goal(models.Model):
+    """
+    Model for registering all the goals.
+    """
     name = models.TextField()
     goal_details = models.TextField()
     goal_after_investment = models.TextField()
